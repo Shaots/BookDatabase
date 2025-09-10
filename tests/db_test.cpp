@@ -1,10 +1,9 @@
-#include <gtest/gtest.h>
 #include "book.hpp"
+#include <gtest/gtest.h>
 
 using namespace bookdb;
 
-
-TEST(TestComponentName, Constructor) { 
+TEST(TestComponentName, Constructor) {
     Book b1(Genre::Fiction);
     EXPECT_EQ(b1.genre, Genre::Fiction);
 

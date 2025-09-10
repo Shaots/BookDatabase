@@ -14,7 +14,8 @@ enum class Genre { Fiction, NonFiction, SciFi, Biography, Mystery, Unknown, Coun
 
 constexpr Genre GenreFromString(std::string_view s) {
     // Rb tree is not necessary since there are only 6 genres
-    static constexpr std::array<std::string, static_cast<int>(Genre::Count)> arr = {"Fiction", "NonFiction", "SciFi", "Biography", "Mystery", "Unknown"};
+    static constexpr std::array<std::string, static_cast<int>(Genre::Count)> arr = {
+        "Fiction", "NonFiction", "SciFi", "Biography", "Mystery", "Unknown"};
     auto it = std::find(arr.begin(), arr.end(), s);
     if (it == arr.end())
         return Genre::Unknown;
@@ -32,9 +33,9 @@ struct Book {
     double rating = 0.0;
     int read_count = 0;
 
-    constexpr Book(std::string_view genre_) : genre(GenreFromString(genre_)){}
+    constexpr Book(std::string_view genre_) : genre(GenreFromString(genre_)) {}
 
-    constexpr Book(Genre genre_) : genre(genre_){}
+    constexpr Book(Genre genre_) : genre(genre_) {}
 };
 }  // namespace bookdb
 
