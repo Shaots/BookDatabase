@@ -13,7 +13,7 @@ enum class Genre { Fiction, NonFiction, SciFi, Biography, Mystery, Unknown, Coun
 // Ваш код для constexpr преобразования строк в enum::Genre и наоборот здесь
 
 constexpr Genre GenreFromString(std::string_view s) {
-    // Rb tree is not necessary since there are only 6 genres
+    // Rb tree is not necessary since there are only 6 genres, which is known in compile time
     static constexpr std::array<std::string, static_cast<int>(Genre::Count)> arr = {
         "Fiction", "NonFiction", "SciFi", "Biography", "Mystery", "Unknown"};
     auto it = std::find(arr.begin(), arr.end(), s);
@@ -67,6 +67,18 @@ struct formatter<bookdb::Genre, char> {
     }
 };
 
-// Ваш код для std::formatter<Book> здесь
+template <>
+struct formatter<bookdb::Book, char> {
+    template <typename FormatContext>
+    auto format(const bookdb::Book book, FormatContext &fc) const {
+        std::string genre_str = std::format("{}", book.genre);
+        return format_to(fc.out(), "Book: Author: {}, Title: {}, Year: {}, Genre: {}, Rating: {}, Read count: {}",
+                         book.author, book.title, book.year, genre_str, book.rating, book.read_count);
+    }
+
+    constexpr auto parse(format_parse_context &ctx) {
+        return ctx.begin();  // Просто игнорируем пользовательский формат
+    }
+};
 
 }  // namespace std

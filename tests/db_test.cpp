@@ -1,5 +1,7 @@
 #include "book.hpp"
+#include <format>
 #include <gtest/gtest.h>
+#include <print>
 
 using namespace bookdb;
 
@@ -27,4 +29,16 @@ TEST(TestComponentName, Constructor) {
 
     Book b8("ABCDE");
     EXPECT_EQ(b8.genre, Genre::Unknown);
+}
+
+TEST(TestComponentName, formatterBook) {
+    Book book(Genre::Fiction);
+    book.author = "Lev Tolstoy";
+    book.title = "Anna Karenina";
+    book.year = 1877;
+    book.rating = 0.5;
+    book.read_count = 8;
+
+    std::string book_str = std::format("{}", book);
+    std::println("{}", book_str);
 }
