@@ -33,9 +33,15 @@ struct Book {
     double rating = 0.0;
     int read_count = 0;
 
-    constexpr Book(std::string_view genre_) : genre(GenreFromString(genre_)) {}
+    constexpr Book(std::string_view genre_, std::string_view author_ = "", std::string_view title_ = "", int year_ = 0,
+                   double rating_ = 0.0, int read_count_ = 0)
+        : author(author_), title(title_), year(year_), genre(GenreFromString(genre_)), rating(rating_),
+          read_count(read_count_) {}
 
-    constexpr Book(Genre genre_) : genre(genre_) {}
+    constexpr Book(Genre genre_, std::string_view author_ = "", std::string_view title_ = "", int year_ = 0,
+                   double rating_ = 0.0, int read_count_ = 0)
+        : author(author_), title(title_), year(year_), genre(genre_), rating(rating_),
+          read_count(read_count_) {}
 };
 }  // namespace bookdb
 
