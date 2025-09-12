@@ -15,6 +15,12 @@ template <BookContainerLike BookContainer = std::vector<Book>>
 class BookDatabase {
 public:
     // Type aliases
+    using value_type = BookContainer::value_type;
+    using size_type = BookContainer::size_type;
+    using reference = BookContainer::reference;
+    using const_reference = BookContainer::const_reference;
+    using iterator = BookContainer::iterator;
+    using const_iterator = BookContainer::const_iterator;
 
     // Ваш код здесь
 
