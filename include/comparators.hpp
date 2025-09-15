@@ -1,7 +1,6 @@
 #pragma once
 
 #include "book.hpp"
-#include <functional>
 
 namespace bookdb::comp {
 
@@ -17,7 +16,7 @@ struct LessByAuthor {
 
 struct LessByTitle {
     using is_transparent = void;
-    
+
     bool operator()(const Book &book1, const Book &book2) { return book1.title < book2.title; }
 
     bool operator()(const Book &book, std::string_view title) { return book.title < title; }
@@ -27,7 +26,7 @@ struct LessByTitle {
 
 struct LessByYear {
     using is_transparent = void;
-    
+
     bool operator()(const Book &book1, const Book &book2) { return book1.year < book2.year; }
 
     bool operator()(const Book &book, int year) { return book.year < year; }
@@ -37,7 +36,7 @@ struct LessByYear {
 
 struct LessByRating {
     using is_transparent = void;
-    
+
     bool operator()(const Book &book1, const Book &book2) { return book1.rating < book2.rating; }
 
     bool operator()(const Book &book, double rating) { return book.rating < rating; }
@@ -45,10 +44,9 @@ struct LessByRating {
     bool operator()(double rating, const Book &book) { return rating < book.rating; }
 };
 
-
 struct LessByReadCount {
     using is_transparent = void;
-    
+
     bool operator()(const Book &book1, const Book &book2) { return book1.read_count < book2.read_count; }
 
     bool operator()(const Book &book, int read_count) { return book.read_count < read_count; }

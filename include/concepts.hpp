@@ -3,8 +3,6 @@
 #include <concepts>
 #include <iterator>
 
-#include "book.hpp"
-
 namespace bookdb {
 
 template <typename T>
@@ -15,7 +13,7 @@ concept BookContainerLike = requires(T t) {
     typename T::const_reference;
     typename T::iterator;
     typename T::const_iterator;
-    
+
     { t.begin() } -> std::forward_iterator;
     { t.end() } -> std::forward_iterator;
     { t.size() } -> std::convertible_to<std::size_t>;
