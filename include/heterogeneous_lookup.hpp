@@ -40,13 +40,9 @@ struct TransparentStringEqual {
 
 struct TransparentStringHash {
     using is_transparent = void;
-    size_t operator()(const std::string_view str) {
-        return std::hash<std::string_view>{}(str);
-    }
+    size_t operator()(const std::string_view str) const { return std::hash<std::string_view>{}(str); }
 
-    size_t operator()(const std::string& str) {
-        return std::hash<std::string>{}(str);
-    }
+    size_t operator()(const std::string &str) const { return std::hash<std::string>{}(str); }
 };
 
 }  // namespace bookdb
