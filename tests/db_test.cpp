@@ -109,7 +109,7 @@ TEST(TestDataBase, elementAccess) {
 
 TEST(TestDataBase, Modifiers) {
     BookDatabase db;
-    db.PushBack({Genre::Fiction, "Lev Tolstoy", "Anna Karenina", 1877, 0.5, 8});  //,
+    db.PushBack({Genre::Fiction, "Lev Tolstoy", "Anna Karenina", 1877, 0.5, 8});
 
     EXPECT_EQ(db.size(), 1);
     EXPECT_EQ(db[0].genre, Genre::Fiction);
@@ -134,4 +134,13 @@ TEST(TestDataBase, Modifiers) {
     db.Clear();
     EXPECT_EQ(db.GetAuthors().empty(), true);
     EXPECT_EQ(db.GetBooks().size(), 0);
+}
+
+TEST(TestDataBase, GetAuthors) {
+    BookDatabase db{{Genre::Fiction, "Lev Tolstoy", "Anna Karenina", 1877, 0.5, 8},
+                    {Genre::Fiction, "Fyodor Dostoevsky", "Crime and Punisment", 1867, 0.5, 10},
+                    {Genre::Fiction, "Fyodor Dostoevsky", "The Brothers Karamazov", 1880, 0.6, 20}};
+    auto authors = db.GetAuthors();
+    EXPECT_EQ(authors.size(), 2);
+    std::cout << authors.size() << std::endl;
 }

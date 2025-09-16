@@ -114,10 +114,7 @@ private:
     BookContainer books_;
     AuthorContainer authors_;
 
-    void extractAuthor(Book &book) {
-        auto res = authors_.emplace(book.author);
-        book.author = *(res.first);
-    }
+    void extractAuthor(Book &book) { authors_.emplace(book.author); }
 };
 
 }  // namespace bookdb

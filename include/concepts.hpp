@@ -1,5 +1,6 @@
 #pragma once
 
+#include "book.hpp"
 #include <concepts>
 #include <iterator>
 
@@ -20,15 +21,15 @@ concept BookContainerLike = requires(T t) {
 };
 
 template <typename T>
-concept BookIterator = true;
+concept BookIterator = std::is_same<Book, typename std::iterator_traits<T>::value_type>::value;
 
 template <typename S, typename I>
-concept BookSentinel = true;
+concept BookSentinel = std::sentinel_for<S, I>;
 
 template <typename P>
-concept BookPredicate = true;
+concept BookPredicate = std::predicate<P, const Book &>;
 
 template <typename C>
-concept BookComparator = true;
+concept BookComparator = std::predicate<C, const Book &, const Book &>;
 
 }  // namespace bookdb
