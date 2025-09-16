@@ -44,7 +44,6 @@ struct GreaterByYear {
     bool operator()(const int year, const Book &book) { return year > book.year; }
 };
 
-
 struct LessByRating {
     using is_transparent = void;
 
@@ -64,7 +63,6 @@ struct GreaterByRating {
 
     bool operator()(const double rating, const Book &book) { return rating > book.rating; }
 };
-
 
 struct LessByReadCount {
     using is_transparent = void;

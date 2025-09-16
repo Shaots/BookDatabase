@@ -2,7 +2,6 @@
 #include "statsistics.hpp"
 #include <algorithm>
 #include <gtest/gtest.h>
-#include <string>
 #include <string_view>
 
 using namespace bookdb;
@@ -55,14 +54,15 @@ TEST(TestStatic, Sample) {
 TEST(TestStatic, getTop) {
     BookDatabase db = create();
     auto res = getTopNBy(db, 3, comp::GreaterByYear{});
-    bool b = std::all_of(res.begin(), res.end(), [](const auto& book){return book.get().year >= 1880;});
+    bool b = std::all_of(res.begin(), res.end(), [](const auto &book) { return book.get().year >= 1880; });
     EXPECT_EQ(b, true);
 
     BookDatabase db2 = create();
-    int minYear = std::min_element(db2.begin(), db2.end(), [](auto it1, auto it2){return it1.year < it2.year;})->year;
+    int minYear =
+        std::min_element(db2.begin(), db2.end(), [](auto it1, auto it2) { return it1.year < it2.year; })->year;
     EXPECT_EQ(minYear, 1813);
     auto res2 = getTopNBy(db2, 10, comp::GreaterByYear{});
-    b = std::all_of(res.begin(), res.end(), [minYear](const auto& book){return book.get().year >= minYear;});
+    b = std::all_of(res.begin(), res.end(), [minYear](const auto &book) { return book.get().year >= minYear; });
     EXPECT_EQ(res2.size(), 6);
     EXPECT_EQ(b, true);
 }

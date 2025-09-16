@@ -6,7 +6,6 @@
 #include <iterator>
 #include <print>
 #include <random>
-#include <stdexcept>
 #include <string_view>
 
 #include "book.hpp"
@@ -64,7 +63,5 @@ auto getTopNBy(BookDatabase<T> &db, size_t N, Comparator comp) {
     res = {db.begin(), db.begin() + sz};
     return res;
 }
-
-
 
 }  // namespace bookdb
